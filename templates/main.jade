@@ -1,6 +1,18 @@
 p You're viewing the main template.
+h2 {{ startFirstWeek.toISOString() | date : 'MMM dd' }}—{{ endFirstWeek.toISOString() | date : 'MMM dd' }}
 ul
-	li placeholder
-	li(ng-repeat="event in eventData") {{event.title}}
+	li(ng-repeat="event in eventData | filterWeek : startFirstWeek : endFirstWeek") {{event.title}}
+		span {{event.date | date}}
+		span {{event.date | date : 'h:mm'}}
+hr
+h2 {{ startNextWeek.toISOString() | date : 'MMM dd' }}—{{ endNextWeek.toISOString() | date : 'MMM dd' }}
+ul
+	li(ng-repeat="event in eventData | filterWeek : startNextWeek : endNextWeek") {{event.title}}
+		span {{event.date | date}}
+		span {{event.date | date : 'h:mm'}}
+hr
+h2 {{ startThirdWeek.toISOString() | date : 'MMM dd' }}—{{ endThirdWeek.toISOString() | date : 'MMM dd' }}
+ul
+	li(ng-repeat="event in eventData | filterWeek : startThirdWeek : endThirdWeek") {{event.title}}
 		span {{event.date | date}}
 		span {{event.date | date : 'h:mm'}}
