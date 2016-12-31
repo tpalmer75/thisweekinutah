@@ -1,0 +1,27 @@
+doctype html
+html(ng-app="utahApp")
+	head
+		title This Week in Utah — Things to do every week
+		base(href="/")
+		link(href="css/style.css?version=1" rel="stylesheet" type="text/css")
+	body(ng-controller="mainCtrl")
+		h1 {{ test }}
+		div(ui-view)
+
+	script(src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js")
+	script.
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyAaz_Zrzc7EM_0-Eob9bu_OSpcL-1V2bkA",
+			authDomain: "thisweekinutah-5743c.firebaseapp.com",
+			databaseURL: "https://thisweekinutah-5743c.firebaseio.com",
+			storageBucket: "thisweekinutah-5743c.appspot.com",
+			messagingSenderId: "381625930743"
+		};
+		firebase.initializeApp(config);
+	//-script(src="../js/angular-offline.js")
+	//- script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-animate.min.js")
+	script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js")
+	script(src="https://cdn.firebase.com/libs/angularfire/2.2.0/angularfire.min.js")
+	script(src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js")
+	script(src="js/app.js")

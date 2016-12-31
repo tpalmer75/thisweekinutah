@@ -1,0 +1,6 @@
+p You're viewing the main template.
+ul
+	li placeholder
+	li(ng-repeat="event in eventData") {{event.title}}
+		span {{event.date | date}}
+		span {{event.date | date : 'h:mm'}}
