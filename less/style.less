@@ -1,1 +1,37 @@
 @import "reset.less";
+
+body {
+	background: #f0f0f0;
+	padding: 20px;
+}
+
+.event-list {
+	> li {
+		width: 100%;
+		max-width: 900px;
+		box-shadow: 0 2px 10px rgba(0,0,0,.15);
+		height: 70px;
+		background: white;
+		display: flex;
+		.event-content {
+			padding: 10px;
+		}
+		h3 {
+			font-size: 24px;
+			margin-bottom: 5px;
+		}
+	}
+	.image-container {
+		width: 70px;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		background: #ccc;
+		flex: 0 0 auto;
+		overflow: hidden;
+		justify-content: center;
+		img {
+			max-height: 100%;
+		}
+	}
+}

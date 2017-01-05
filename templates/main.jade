@@ -1,20 +1,32 @@
 p You're viewing the main template.
 h2 {{ startFirstWeek.toISOString() | date : 'MMM dd' }}—{{ endFirstWeek.toISOString() | date : 'MMM dd' }}
-ul
-	li(ng-repeat="event in eventData | filterWeek : startFirstWeek : endFirstWeek") {{event.title}}
-		span {{event.date | date}}
-		span {{event.date | date : 'h:mm'}}
+ul.event-list
+	li(ng-repeat="event in eventData | filterWeek : startFirstWeek : endFirstWeek")
+		.image-container
+			//-img(ng-src="{{ serveURL(event.image) }}")
+		.event-content
+			h3 {{event.title}}
+			span {{event.date | date}}
+			span {{event.date | date : 'h:mm'}}
 hr
 h2 {{ startNextWeek.toISOString() | date : 'MMM dd' }}—{{ endNextWeek.toISOString() | date : 'MMM dd' }}
-ul
-	li(ng-repeat="event in eventData | filterWeek : startNextWeek : endNextWeek") {{event.title}}
-		span {{event.date | date}}
-		span {{event.date | date : 'h:mm'}}
+ul.event-list
+	li(ng-repeat="event in eventData | filterWeek : startNextWeek : endNextWeek")
+		.image-container
+			//-img(ng-src="{{ imageURLs[event.image] }}")
+		.event-content
+			h3 {{event.title}}
+			span {{event.date | date}}
+			span {{event.date | date : 'h:mm'}}
 hr
 h2 {{ startThirdWeek.toISOString() | date : 'MMM dd' }}—{{ endThirdWeek.toISOString() | date : 'MMM dd' }}
-ul
-	li(ng-repeat="event in eventData | filterWeek : startThirdWeek : endThirdWeek") {{event.title}}
-		span {{event.date | date}}
-		span {{event.date | date : 'h:mm'}}
-img(ng-src="{{ imageURLs['20170102-temple-lights.jpg'] }}")
-p {{serveURL('20170102-temple-lights.jpg')}}
+ul.event-list
+	li(ng-repeat="event in eventData | filterWeek : startThirdWeek : endThirdWeek")
+		.image-container
+			img(ng-src="{{ serveURL(event.image) }}")
+		.event-content
+			h3 {{event.title}}
+			span {{event.date | date}}
+			span {{event.date | date : 'h:mm'}}
+
+p {{ serveURL('20170102-temple-lights.jpg') }}

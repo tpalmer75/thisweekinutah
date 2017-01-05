@@ -33,13 +33,16 @@ angular.module('utahApp', ['ui.router','firebase'])
 	var firebaseStorageRef = firebaseFactory.storage();
 	$scope.dataReady = false;
 
-	$scope.imageURLs = {};
+	//$scope.imageURLs = {};
 
 	$scope.serveURL = function(path) {
 		firebaseFactory.getImageURL(path)
 		.then(function(url) {
 			console.log(url);
-			$scope.imageURLs[path] = url;
+			//$scope.$apply();
+			return url;
+
+			//$scope.imageURLs[path] = url;
 		}).catch(function(err){
 			console.log(err);
 		});
