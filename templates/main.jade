@@ -16,3 +16,5 @@ ul
 	li(ng-repeat="event in eventData | filterWeek : startThirdWeek : endThirdWeek") {{event.title}}
 		span {{event.date | date}}
 		span {{event.date | date : 'h:mm'}}
+img(ng-src="{{ imageURLs['20170102-temple-lights.jpg'] }}")
+p {{serveURL('20170102-temple-lights.jpg')}}

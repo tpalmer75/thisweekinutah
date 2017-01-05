@@ -18,7 +18,7 @@ angular.module('utahApp', ['ui.router','firebase'])
 	    });
 })
 
-.controller('mainCtrl', function($scope, $firebaseArray, firebaseFactory, $filter) {
+.controller('mainCtrl', function($scope, firebaseFactory, $filter, $timeout) {
 
 	$scope.startFirstWeek = moment().startOf('isoWeek');
 	$scope.endFirstWeek = moment().endOf('isoWeek');
@@ -28,36 +28,22 @@ angular.module('utahApp', ['ui.router','firebase'])
 
 	$scope.startThirdWeek = moment().add(14, 'days').startOf('isoWeek');
 	$scope.endThirdWeek = moment().add(14, 'days').endOf('isoWeek');
-	
-	// $scope.isThisWeek = function(eventDate, startDate, endDate) {
-	// 	var tempDate = moment(eventDate);
-	// 	var isBefore = tempDate.isBefore(startDate);
-	// 	var isAfter = tempDate.isAfter(endDate);
-
-	// 	if (!isBefore && !isAfter) {
-	// 		return true;
-	// 	} else {
-	// 		return false;
-	// 	}
-	// }
-
-	// $scope.isThisWeek = function(item) {
-	// 	var tempDate = moment(item.date);
-	// 	var isBefore = tempDate.isBefore(startFirstWeek);
-	// 	var isAfter = tempDate.isAfter(endFirstWeek);
-
-	// 	//console.log(eventDate);
-	// 	console.log('here');
-
-	// 	if (!isBefore && !isAfter) {
-	// 		return true;
-	// 	} else {
-	// 		return false;
-	// 	}
-	// }
 
 	var firebaseData = firebaseFactory.data();
+	var firebaseStorageRef = firebaseFactory.storage();
 	$scope.dataReady = false;
+
+	$scope.imageURLs = {};
+
+	$scope.serveURL = function(path) {
+		firebaseFactory.getImageURL(path)
+		.then(function(url) {
+			console.log(url);
+			$scope.imageURLs[path] = url;
+		}).catch(function(err){
+			console.log(err);
+		});
+	};
 
 	firebaseData.$loaded()
 		.then(function() {
@@ -74,7 +60,7 @@ angular.module('utahApp', ['ui.router','firebase'])
 	$scope.test="Hello event ctrl!"
 })
 
-.filter ('filterWeek', function() {
+.filter('filterWeek', function() {
 	return function(items, startDate, endDate) {
 		// if Firebase hasn't returned data yet
 		if (items === undefined) {
@@ -109,9 +95,22 @@ angular.module('utahApp', ['ui.router','firebase'])
 	var dataRef = firebase.database().ref()
 	var data = $firebaseArray(dataRef.child("events").orderByChild("date").startAt(firebaseStart).endAt(firebaseEnd));
 
+	var storageRef = firebase.storage().ref();
+
+	var getImage = function(path) {
+		return storageRef.child("event-photos").child(path).getDownloadURL();
+	}
+
+
 	return {
 		data: function() {
 			return data;
+		},
+		storage: function() {
+			return storageRef;
+		},
+		getImageURL: function(path) {
+			return getImage(path);
 		}
 	}
 
