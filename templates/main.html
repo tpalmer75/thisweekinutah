@@ -1,33 +1,36 @@
 
-<p>You're viewing the main template.</p>
-<h2>{{ startFirstWeek.toISOString() | date : 'MMM dd' }}—{{ endFirstWeek.toISOString() | date : 'MMM dd' }}</h2>
-<ul class="event-list">
-  <li ng-repeat="event in eventData | filterWeek : startFirstWeek : endFirstWeek">
-    <div class="image-container"><img ng-src="{{ event.image }}"/></div>
-    <div class="event-content">
-      <h3>{{event.title}}</h3><span>{{event.date | date}}</span><span>{{event.date | date : 'h:mm'}}</span>
-    </div>
-  </li>
-</ul>
-<hr/>
-<h2>{{ startNextWeek.toISOString() | date : 'MMM dd' }}—{{ endNextWeek.toISOString() | date : 'MMM dd' }}</h2>
-<ul class="event-list">
-  <li ng-repeat="event in eventData | filterWeek : startNextWeek : endNextWeek">
-    <div class="image-container">
-    </div>
-    <div class="event-content">
-      <h3>{{event.title}}</h3><span>{{event.date | date}}</span><span>{{event.date | date : 'h:mm'}}</span>
-    </div>
-  </li>
-</ul>
-<hr/>
-<h2>{{ startThirdWeek.toISOString() | date : 'MMM dd' }}—{{ endThirdWeek.toISOString() | date : 'MMM dd' }}</h2>
-<ul class="event-list">
-  <li ng-repeat="event in eventData | filterWeek : startThirdWeek : endThirdWeek">
-    <div class="image-container"><img ng-src="{{ event.image }}"/></div>
-    <div class="event-content">
-      <h3>{{event.title}}</h3><span>{{event.date | date}}</span><span>{{event.date | date : 'h:mm'}}</span>
-    </div>
-  </li>
-</ul>
-<p>{{ serveURL('20170102-temple-lights.jpg') }}</p>
+<div class="wrapper">
+  <header>
+    <h1>This week in Utah</h1>
+  </header>
+  <section>
+    <h2 class="week-range">{{ startFirstWeek.toISOString() | date : 'MMM dd' }}—{{ endFirstWeek.toISOString() | date : 'MMM dd' }}</h2>
+    <ul class="event-list">
+      <li ng-repeat="event in eventData | filterWeek : startFirstWeek : endFirstWeek">
+        <div class="image-container"><img ng-src="{{ event.image }}"/></div>
+        <div class="event-content">
+          <h3>{{event.title}}</h3><span>{{event.date | date}}</span><span>{{event.date | date : 'h:mm'}}</span>
+        </div>
+      </li>
+    </ul>
+    <h2 class="week-range">{{ startNextWeek.toISOString() | date : 'MMM dd' }}—{{ endNextWeek.toISOString() | date : 'MMM dd' }}</h2>
+    <ul class="event-list">
+      <li ng-repeat="event in eventData | filterWeek : startNextWeek : endNextWeek">
+        <div class="image-container">
+        </div>
+        <div class="event-content">
+          <h3>{{event.title}}</h3><span>{{event.date | date}}</span><span>{{event.date | date : 'h:mm'}}</span>
+        </div>
+      </li>
+    </ul>
+    <h2 class="week-range">{{ startThirdWeek.toISOString() | date : 'MMM dd' }}—{{ endThirdWeek.toISOString() | date : 'MMM dd' }}</h2>
+    <ul class="event-list">
+      <li ng-repeat="event in eventData | filterWeek : startThirdWeek : endThirdWeek">
+        <div class="image-container"><img ng-src="{{ event.image }}"/></div>
+        <div class="event-content">
+          <h3>{{event.title}}</h3><span>{{event.date | date}}</span><span>{{event.date | date : 'h:mm'}}</span>
+        </div>
+      </li>
+    </ul>
+  </section>
+</div>
