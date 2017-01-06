@@ -3,8 +3,7 @@
 <h2>{{ startFirstWeek.toISOString() | date : 'MMM dd' }}—{{ endFirstWeek.toISOString() | date : 'MMM dd' }}</h2>
 <ul class="event-list">
   <li ng-repeat="event in eventData | filterWeek : startFirstWeek : endFirstWeek">
-    <div class="image-container">
-    </div>
+    <div class="image-container"></div>
     <div class="event-content">
       <h3>{{event.title}}</h3><span>{{event.date | date}}</span><span>{{event.date | date : 'h:mm'}}</span>
     </div>
@@ -25,10 +24,9 @@
 <h2>{{ startThirdWeek.toISOString() | date : 'MMM dd' }}—{{ endThirdWeek.toISOString() | date : 'MMM dd' }}</h2>
 <ul class="event-list">
   <li ng-repeat="event in eventData | filterWeek : startThirdWeek : endThirdWeek">
-    <div class="image-container"><img ng-src="{{ serveURL(event.image) }}"/></div>
+    <div class="image-container"><img ng-src="{{ event.imageURL }}"/></div>
     <div class="event-content">
       <h3>{{event.title}}</h3><span>{{event.date | date}}</span><span>{{event.date | date : 'h:mm'}}</span>
     </div>
   </li>
 </ul>
-<p>{{ serveURL('20170102-temple-lights.jpg') }}</p>

@@ -1,6 +1,5 @@
 angular.module('utahApp', ['ui.router','firebase'])
 
-
 .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
 	$urlRouterProvider.otherwise('/');
@@ -35,11 +34,12 @@ angular.module('utahApp', ['ui.router','firebase'])
 
 	//$scope.imageURLs = {};
 
-	$scope.serveURL = function(path) {
-		firebaseFactory.getImageURL(path)
+	$scope.serveURL = function(event) {
+		firebaseFactory.getImageURL(event.image)
 		.then(function(url) {
 			console.log(url);
-			//$scope.$apply();
+			event.imageURL = url;
+			$scope.$apply();
 			return url;
 
 			//$scope.imageURLs[path] = url;
@@ -52,6 +52,13 @@ angular.module('utahApp', ['ui.router','firebase'])
 		.then(function() {
 			$scope.dataReady = true;
 			console.log(firebaseData);
+			angular.forEach(firebaseData, function(event) {
+          //console.log('event', event.image);
+          //remove next line 
+          event.image = '20170102-temple-lights.jpg';
+          event.url = $scope.serveURL(event);
+          console.log('url', event.url);
+      })
 			$scope.eventData = firebaseData;
 		})
 		.catch(function(err) {
