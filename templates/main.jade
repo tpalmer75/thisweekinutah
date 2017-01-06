@@ -3,7 +3,7 @@ h2 {{ startFirstWeek.toISOString() | date : 'MMM dd' }}—{{ endFirstWeek.toISOS
 ul.event-list
 	li(ng-repeat="event in eventData | filterWeek : startFirstWeek : endFirstWeek")
 		.image-container
-			//-img(ng-src="{{ serveURL(event.image) }}")
+			img(ng-src="{{ event.image }}")
 		.event-content
 			h3 {{event.title}}
 			span {{event.date | date}}
@@ -23,7 +23,7 @@ h2 {{ startThirdWeek.toISOString() | date : 'MMM dd' }}—{{ endThirdWeek.toISOS
 ul.event-list
 	li(ng-repeat="event in eventData | filterWeek : startThirdWeek : endThirdWeek")
 		.image-container
-			img(ng-src="{{ serveURL(event.image) }}")
+			img(ng-src="{{ event.image }}")
 		.event-content
 			h3 {{event.title}}
 			span {{event.date | date}}

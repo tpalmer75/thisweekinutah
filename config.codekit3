@@ -9,6 +9,12 @@
 	],
 "creatorBuild": "25479",
 "files": {
+	"\/.firebaserc": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/.firebaserc",
+		"oF": 0
+		},
 	"\/css\/style.css": {
 		"aP": 0,
 		"bl": 0,
@@ -24,6 +30,14 @@
 		"oA": 2,
 		"oAP": "\/css\/style.css.map",
 		"oF": 0
+		},
+	"\/firebase.json": {
+		"ft": 524288,
+		"oA": 1,
+		"oAP": "\/firebase-min.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
 		},
 	"\/index.html": {
 		"ft": 8192,

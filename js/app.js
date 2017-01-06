@@ -35,18 +35,18 @@ angular.module('utahApp', ['ui.router','firebase'])
 
 	//$scope.imageURLs = {};
 
-	$scope.serveURL = function(path) {
-		firebaseFactory.getImageURL(path)
-		.then(function(url) {
-			console.log(url);
-			//$scope.$apply();
-			return url;
+	// $scope.serveURL = function(path) {
+	// 	firebaseFactory.getImageURL(path)
+	// 	.then(function(url) {
+	// 		console.log(url);
+	// 		//$scope.$apply();
+	// 		return url;
 
-			//$scope.imageURLs[path] = url;
-		}).catch(function(err){
-			console.log(err);
-		});
-	};
+	// 		//$scope.imageURLs[path] = url;
+	// 	}).catch(function(err){
+	// 		console.log(err);
+	// 	});
+	// };
 
 	firebaseData.$loaded()
 		.then(function() {
