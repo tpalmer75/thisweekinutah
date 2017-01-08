@@ -6,29 +6,29 @@
   <section>
     <h2 class="week-range">{{ startFirstWeek.toISOString() | date : 'MMM dd' }}—{{ endFirstWeek.toISOString() | date : 'MMM dd' }}</h2>
     <ul class="event-list">
-      <li ng-repeat="event in eventData | filterWeek : startFirstWeek : endFirstWeek">
+      <li style="order: 1">Subscribe now</li>
+      <li ng-repeat="event in eventData | filterWeek : startFirstWeek : endFirstWeek" style="order: {{$index}}">
         <div class="image-container"><img ng-src="{{ event.image }}"/></div>
         <div class="event-content">
-          <h3>{{event.title}}</h3><span>{{event.date | date}}</span><span>{{event.date | date : 'h:mm'}}</span>
+          <h3>{{event.title}}</h3><span ng-show="event.days">{{ event.days }}</span><span>{{event.startDate | date}}—{{event.endDate | date}}</span><span>{{event.startDate | date : 'h:mm'}}</span>
         </div>
       </li>
     </ul>
     <h2 class="week-range">{{ startNextWeek.toISOString() | date : 'MMM dd' }}—{{ endNextWeek.toISOString() | date : 'MMM dd' }}</h2>
     <ul class="event-list">
-      <li ng-repeat="event in eventData | filterWeek : startNextWeek : endNextWeek">
-        <div class="image-container">
-        </div>
+      <li ng-repeat="event in eventData | filterWeek : startNextWeek : endNextWeek" style="order: {{$index}}">
+        <div class="image-container"><img ng-src="{{ event.image }}"/></div>
         <div class="event-content">
-          <h3>{{event.title}}</h3><span>{{event.date | date}}</span><span>{{event.date | date : 'h:mm'}}</span>
+          <h3>{{event.title}}</h3><span ng-show="event.days">{{ event.days }}</span><span>{{event.startDate | date}}—{{event.endDate | date}}</span><span>{{event.startDate | date : 'h:mm'}}</span>
         </div>
       </li>
     </ul>
     <h2 class="week-range">{{ startThirdWeek.toISOString() | date : 'MMM dd' }}—{{ endThirdWeek.toISOString() | date : 'MMM dd' }}</h2>
     <ul class="event-list">
-      <li ng-repeat="event in eventData | filterWeek : startThirdWeek : endThirdWeek">
+      <li ng-repeat="event in eventData | filterWeek : startThirdWeek : endThirdWeek" style="order: {{$index}}">
         <div class="image-container"><img ng-src="{{ event.image }}"/></div>
         <div class="event-content">
-          <h3>{{event.title}}</h3><span>{{event.date | date}}</span><span>{{event.date | date : 'h:mm'}}</span>
+          <h3>{{event.title}}</h3><span ng-show="event.days">{{ event.days }}</span><span>{{event.startDate | date}}—{{event.endDate | date}}</span><span>{{event.startDate | date : 'h:mm'}}</span>
         </div>
       </li>
     </ul>

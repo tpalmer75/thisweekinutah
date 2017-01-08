@@ -15,10 +15,21 @@ angular.module('utahApp', ['ui.router','firebase'])
 	        url: '/events/:eventId',
 	        templateUrl: 'templates/event-detail.html',
 	        controller: 'eventCtrl'
+	    })
+	    .state('upload', {
+	    	url: '/upload',
+	    	templateURL: 'templates/upload.html',
+	    	controller: 'uploadCtrl'
 	    });
 })
 
-.controller('mainCtrl', function($scope, firebaseFactory, $filter, $timeout) {
+.controller('uploadCtrl', function($scope) {
+	$scope.test = "hello world";
+});
+
+.controller('mainCtrl', function($scope, firebaseFactory, $filter, $rootScope) {
+
+	$rootScope.title = "This Week in Utah\u2014Things to do this week"
 
 	$scope.startFirstWeek = moment().startOf('isoWeek');
 	$scope.endFirstWeek = moment().endOf('isoWeek');
@@ -30,23 +41,7 @@ angular.module('utahApp', ['ui.router','firebase'])
 	$scope.endThirdWeek = moment().add(14, 'days').endOf('isoWeek');
 
 	var firebaseData = firebaseFactory.data();
-	var firebaseStorageRef = firebaseFactory.storage();
 	$scope.dataReady = false;
-
-	//$scope.imageURLs = {};
-
-	// $scope.serveURL = function(path) {
-	// 	firebaseFactory.getImageURL(path)
-	// 	.then(function(url) {
-	// 		console.log(url);
-	// 		//$scope.$apply();
-	// 		return url;
-
-	// 		//$scope.imageURLs[path] = url;
-	// 	}).catch(function(err){
-	// 		console.log(err);
-	// 	});
-	// };
 
 	firebaseData.$loaded()
 		.then(function() {
@@ -64,7 +59,7 @@ angular.module('utahApp', ['ui.router','firebase'])
 })
 
 .filter('filterWeek', function() {
-	return function(items, startDate, endDate) {
+	return function(items, weekStart, weekEnd) {
 		// if Firebase hasn't returned data yet
 		if (items === undefined) {
 			return;
@@ -73,11 +68,12 @@ angular.module('utahApp', ['ui.router','firebase'])
 		var filtered = [];
 		
 		for (var i = 0; i < items.length; i++) {
-			var item = items[i]
-			var tempDate = moment(item.date);
-			var isBefore = tempDate.isBefore(startDate);
-			var isAfter = tempDate.isAfter(endDate);
-			if (!isBefore && !isAfter) {
+			var item = items[i];
+			var tempStart = moment(item.startDate);
+			var tempEnd = moment(item.endDate);
+			var startsBeforeEnd = tempStart.isBefore(weekEnd);
+			var endsBeforeStart = tempEnd.isAfter(weekStart);
+			if (startsBeforeEnd && endsBeforeStart) {
 				filtered.push(item);
 			}
 		}
@@ -96,24 +92,11 @@ angular.module('utahApp', ['ui.router','firebase'])
 	var firebaseEnd = endDate.toISOString();
 
 	var dataRef = firebase.database().ref()
-	var data = $firebaseArray(dataRef.child("events").orderByChild("date").startAt(firebaseStart).endAt(firebaseEnd));
-
-	var storageRef = firebase.storage().ref();
-
-	var getImage = function(path) {
-		return storageRef.child("event-photos").child(path).getDownloadURL();
-	}
-
+	var data = $firebaseArray(dataRef.child("events").orderByChild("endDate").startAt(firebaseStart));
 
 	return {
 		data: function() {
 			return data;
-		},
-		storage: function() {
-			return storageRef;
-		},
-		getImageURL: function(path) {
-			return getImage(path);
 		}
 	}
 

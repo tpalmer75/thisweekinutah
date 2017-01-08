@@ -1,7 +1,7 @@
 doctype html
 html(ng-app="utahApp")
 	head
-		title This Week in Utah — Things to do every week
+		title(ng-bind="title")
 		base(href="/")
 		link(href="https://fonts.googleapis.com/css?family=Muli:400,400i,700,900" rel="stylesheet")
 		link(href="css/style.css?version=1" rel="stylesheet" type="text/css")
@@ -20,8 +20,6 @@ html(ng-app="utahApp")
 			messagingSenderId: "381625930743"
 		};
 		firebase.initializeApp(config);
-	//-script(src="../js/angular-offline.js")
-	//- script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-animate.min.js")
 	script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js")
 	script(src="https://cdn.firebase.com/libs/angularfire/2.2.0/angularfire.min.js")
 	script(src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.min.js")

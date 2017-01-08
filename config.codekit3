@@ -113,6 +113,12 @@
 		"sM": 0,
 		"sU": 0
 		},
+	"\/robots.txt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/robots.txt",
+		"oF": 0
+		},
 	"\/templates\/event-detail.html": {
 		"ft": 8192,
 		"oA": 2,
@@ -130,6 +136,14 @@
 		"ft": 512,
 		"oA": 0,
 		"oAP": "\/templates\/main.html",
+		"oF": 0,
+		"oS": 0
+		},
+	"\/templates\/upload.jade": {
+		"cOD": 1,
+		"ft": 512,
+		"oA": 0,
+		"oAP": "\/templates\/upload.html",
 		"oF": 0,
 		"oS": 0
 		}
