@@ -4,7 +4,7 @@ angular.module('utahApp', ['ui.router','firebase'])
 .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
 	$urlRouterProvider.otherwise('/');
-	$locationProvider.html5Mode(true);
+	//$locationProvider.html5Mode(true);
 	$stateProvider
 		.state('home', {
             url: '/',
@@ -18,18 +18,19 @@ angular.module('utahApp', ['ui.router','firebase'])
 	    })
 	    .state('upload', {
 	    	url: '/upload',
-	    	templateURL: 'templates/upload.html',
+	    	templateUrl: 'templates/upload.html',
 	    	controller: 'uploadCtrl'
 	    });
 })
 
-.controller('uploadCtrl', function($scope) {
+.controller('uploadCtrl', function($scope, $rootScope) {
 	$scope.test = "hello world";
-});
+	$rootScope.title = "Upload Controller Test";
+})
 
 .controller('mainCtrl', function($scope, firebaseFactory, $filter, $rootScope) {
 
-	$rootScope.title = "This Week in Utah\u2014Things to do this week"
+	$rootScope.title = "This Week in Utah\u2014Things to do this week";
 
 	$scope.startFirstWeek = moment().startOf('isoWeek');
 	$scope.endFirstWeek = moment().endOf('isoWeek');
@@ -55,7 +56,7 @@ angular.module('utahApp', ['ui.router','firebase'])
 })
 
 .controller('eventCtrl', function($scope) {
-	$scope.test="Hello event ctrl!"
+	$scope.test="Hello event ctrl!";
 })
 
 .filter('filterWeek', function() {
@@ -78,7 +79,7 @@ angular.module('utahApp', ['ui.router','firebase'])
 			}
 		}
 		return filtered;
-	}
+	};
 })
 
 .factory('firebaseFactory', function($firebaseArray) {
@@ -89,16 +90,16 @@ angular.module('utahApp', ['ui.router','firebase'])
 
 	var endDate = new Date();
 	endDate.setDate(endDate.getDate()+21);
-	var firebaseEnd = endDate.toISOString();
+	//var firebaseEnd = endDate.toISOString();
 
-	var dataRef = firebase.database().ref()
+	var dataRef = firebase.database().ref();
 	var data = $firebaseArray(dataRef.child("events").orderByChild("endDate").startAt(firebaseStart));
 
 	return {
 		data: function() {
 			return data;
 		}
-	}
+	};
 
 });
 

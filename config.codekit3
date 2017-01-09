@@ -139,6 +139,12 @@
 		"oF": 0,
 		"oS": 0
 		},
+	"\/templates\/upload.html": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/templates\/upload.html",
+		"oF": 0
+		},
 	"\/templates\/upload.jade": {
 		"cOD": 1,
 		"ft": 512,

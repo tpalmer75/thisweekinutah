@@ -1,6 +1,7 @@
 .wrapper
 	header
 		h1 This week in Utah
+		a(ui-sref="upload") Click here to go to /upload
 
 	section
 		h2.week-range {{ startFirstWeek.toISOString() | date : 'MMM dd' }}—{{ endFirstWeek.toISOString() | date : 'MMM dd' }}
