@@ -2,16 +2,40 @@ h1 {{ test }}
 form
 	div
 		label 
+			h3 Email
+		input(type="email" placeholder="Email" ng-model="email")
+		div
+			label 
+				h3 Password
+			input(type="password" placeholder="Password" ng-model="password")
+		div
+			button(ng-click="login()") Login
+form(ng-if="isLoggedIn")
+	div
+		label 
 			h3 Title (Ex: Lights at Temple Square)
-		input(type="text" placeholder="Title")
+		input(type="text" placeholder="Title" ng-model="title")
 	div
 		label 
 			h3 Description (What's going on?)
 		textarea(placeholder="Description")
 	div
+		label Image
+		input(type="file" custom-file-upload="uploadFile")
+	div
 		label 
 			h3 Location (ex: Salt Lake City)
-		input(type="text" placeholder="Location")
+		input(type="text" placeholder="Location" ng-model="location")
 	div
-		input(type="date")
-		input(type="time")
+		label Start Date (2017-01-03T12:28:54)
+		input(type="text" ng-model="startDate")
+	div
+		label End Date (2017-01-03T12:28:54)
+		input(type="text" ng-model="endDate")
+	div
+		label Original Link
+		input(type="text" ng-model="originalLink")
+	div
+		button(ng-click="pushData()") Upload
+
+p {{filteredDate}}

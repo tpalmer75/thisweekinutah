@@ -23,9 +23,65 @@ angular.module('utahApp', ['ui.router','firebase'])
 	    });
 })
 
-.controller('uploadCtrl', function($scope, $rootScope) {
-	$scope.test = "hello world";
-	$rootScope.title = "Upload Controller Test";
+.controller('uploadCtrl', function($scope, firebaseFactory, $filter) {
+	$scope.title = "";
+	$scope.description = "";
+	$scope.startDate = "";
+	$scope.endDate = "";
+	$scope.days = "";
+	$scope.image = "";
+	$scope.price = "";
+	$scope.time = "";
+	$scope.originalLink = "";
+
+	$scope.uploadFile = function(event){
+        var file = event.target.files[0];
+        console.log(file);
+        firebaseFactory.uploadFile(file);
+    };
+
+    $scope.filteredDate = $filter('date')($scope.startDate, "yyyy-mm-dd");
+
+
+	var customKey = "testKey";
+	var eventDetails = {
+		"title": "",
+		"description": "",
+		"startDate": "",
+		"endDate": "",
+		"days": "",
+		"image": "",
+		"price": "",
+		"time": "",
+		"originalLink": ""
+	};
+	$scope.pushData = function() {
+		firebaseFactory.pushData(customKey, eventDetails);
+	};
+
+	$scope.email;
+	$scope.password;
+	$scope.isLoggedIn = false;
+
+	$scope.login = function() {
+		firebase.auth().signInWithEmailAndPassword($scope.email, $scope.password).then(function() {
+			console.log("success");
+			$scope.isLoggedIn = true;
+			$scope.$apply();
+		}).catch(function(error) {
+		  console.log(error.code, error.message);
+		});
+	};
+})
+
+.directive('customFileUpload', function() {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attrs) {
+      var onChangeHandler = scope.$eval(attrs.customFileUpload);
+      element.bind('change', onChangeHandler);
+    }
+  };
 })
 
 .controller('mainCtrl', function($scope, firebaseFactory, $filter, $rootScope) {
@@ -88,16 +144,44 @@ angular.module('utahApp', ['ui.router','firebase'])
 	startDate.setDate(startDate.getDate()-7);
 	var firebaseStart = startDate.toISOString();
 
-	var endDate = new Date();
-	endDate.setDate(endDate.getDate()+21);
+	//var endDate = new Date();
+	//endDate.setDate(endDate.getDate()+21);
 	//var firebaseEnd = endDate.toISOString();
 
 	var dataRef = firebase.database().ref();
 	var data = $firebaseArray(dataRef.child("events").orderByChild("endDate").startAt(firebaseStart));
+	var storageRef = firebase.storage().ref();
+
+	var setData = function(id, obj) {
+		dataRef.child("events/" + id).set(obj);
+		console.log("Data Uploaded to Firebase");
+	};
+
+	var uploadFile = function(file) {
+		storageRef.child("event-photos/"+file.name).put(file)
+			.then(function() {
+				console.log("Tried to upload");
+				storageRef.child("event-photos/"+file.name).getDownloadURL()
+					.then(function(url) {
+						console.log(url);
+						return url;
+					}).catch(function(err){
+						console.log(err);
+					});
+			}).catch(function(err){
+				console.log(err);
+			});
+	}
 
 	return {
 		data: function() {
 			return data;
+		},
+		pushData: function(id, obj) {
+			return setData(id, obj);
+		},
+		uploadFile: function(file) {
+			return uploadFile(file);
 		}
 	};
 
