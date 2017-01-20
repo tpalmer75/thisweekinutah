@@ -1,10 +1,30 @@
-.wrapper
-	header
-		h1 This week in Utah
-		a(ui-sref="upload") Click here to go to /upload
 
-	section
-		h2.week-range {{ startFirstWeek.toISOString() | date : 'MMM dd' }}—{{ endFirstWeek.toISOString() | date : 'MMM dd' }}
+header
+	.wrapper
+		h1.screen-reader This week in Utah
+		a(href="/" title="This Week in Utah")
+			img#logo(src="img/logo-2x.png")
+		//- Begin MailChimp Signup Form
+		div#newsletter
+			h2 New things to do every week. 🎉
+			h3 One email, once per week.
+			#mc_embed_signup
+				form#mc-embedded-subscribe-form.validate(action='//uxtools.us14.list-manage.com/subscribe/post?u=56c88bcfa8f1dc80f5c401b3a&id=218467b99e', method='post', name='mc-embedded-subscribe-form', target='_blank', novalidate='')
+				#mc_embed_signup_scroll
+					//- label(for='mce-EMAIL') Subscribe to our mailing list
+					//- | &#x9;
+					input#mce-EMAIL.email(type='email', value='', name='EMAIL', placeholder='Email address', required='')
+					//- real people should not fill this in and expect good things - do not remove this or risk form bot signups
+					div(style='position: absolute; left: -5000px;', aria-hidden='true')
+						input(type='text', name='b_56c88bcfa8f1dc80f5c401b3a_218467b99e', tabindex='-1', value='')  
+					input#mc-embedded-subscribe.red(type='submit', value='Subscribe', name='subscribe')
+					//- End mc_embed_signup
+
+a(ui-sref="upload") Click here to go to /upload
+section
+	.wrapper
+		h2.week-range 💯 This week
+			span {{ startFirstWeek.toISOString() | date : 'MMM dd' }}—{{ endFirstWeek.toISOString() | date : 'MMM dd' }} 
 		ul.event-list
 			li(style="order: 1") Subscribe now
 			li(ng-repeat="event in eventData | filterWeek : startFirstWeek : endFirstWeek" style="order: {{$index}}")

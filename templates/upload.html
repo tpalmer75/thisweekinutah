@@ -1,59 +1,62 @@
 
 <h1>{{ test }}</h1>
-<form>
-  <div>
-    <label> 
-      <h3>Email</h3>
-    </label>
-    <input type="email" placeholder="Email" ng-model="email"/>
+<section id="upload">
+  <form>
+    <div class="login">
+      <label> 
+        <h3>Email</h3>
+      </label>
+      <input type="email" placeholder="Email" ng-model="email"/>
+      <div>
+        <label> 
+          <h3>Password</h3>
+        </label>
+        <input type="password" placeholder="Password" ng-model="password"/>
+      </div>
+      <div>
+        <button ng-click="login()">Login</button>
+      </div>
+    </div>
+  </form>
+  <form ng-if="isLoggedIn">
     <div>
       <label> 
-        <h3>Password</h3>
+        <h3>Title (Ex: Lights at Temple Square)</h3>
       </label>
-      <input type="password" placeholder="Password" ng-model="password"/>
+      <input type="text" placeholder="Title" ng-model="title"/>
     </div>
     <div>
-      <button ng-click="login()">Login</button>
+      <label> 
+        <h3>Description (What's going on?)</h3>
+      </label>
+      <textarea placeholder="Description"></textarea>
     </div>
-  </div>
-</form>
-<form ng-if="isLoggedIn">
-  <div>
-    <label> 
-      <h3>Title (Ex: Lights at Temple Square)</h3>
-    </label>
-    <input type="text" placeholder="Title" ng-model="title"/>
-  </div>
-  <div>
-    <label> 
-      <h3>Description (What's going on?)</h3>
-    </label>
-    <textarea placeholder="Description"></textarea>
-  </div>
-  <div>
-    <label>Image</label>
-    <input type="file" custom-file-upload="uploadFile"/>
-  </div>
-  <div>
-    <label> 
-      <h3>Location (ex: Salt Lake City)</h3>
-    </label>
-    <input type="text" placeholder="Location" ng-model="location"/>
-  </div>
-  <div>
-    <label>Start Date (2017-01-03T12:28:54)</label>
-    <input type="text" ng-model="startDate"/>
-  </div>
-  <div>
-    <label>End Date (2017-01-03T12:28:54)</label>
-    <input type="text" ng-model="endDate"/>
-  </div>
-  <div>
-    <label>Original Link</label>
-    <input type="text" ng-model="originalLink"/>
-  </div>
-  <div>
-    <button ng-click="pushData()">Upload</button>
-  </div>
-</form>
-<p>{{filteredDate}}</p>
+    <div>
+      <label>Image</label>
+      <input type="file" file-read="$parent.imageFile"/>
+      <p>{{ imageFile }}</p>
+    </div>
+    <div>
+      <label> 
+        <h3>Location (ex: Salt Lake City)</h3>
+      </label>
+      <input type="text" placeholder="Location" ng-model="location"/>
+    </div>
+    <div>
+      <label>Start Date (2017-01-03T12:28:54)</label>
+      <input type="text" ng-model="startDate"/>
+    </div>
+    <div>
+      <label>End Date (2017-01-03T12:28:54)</label>
+      <input type="text" ng-model="endDate"/>
+    </div>
+    <div>
+      <label>Original Link</label>
+      <input type="text" ng-model="originalLink"/>
+    </div>
+    <div>
+      <button ng-click="pushData()">Upload</button>
+    </div>
+  </form>
+  <p>{{filteredDate}}</p>
+</section>

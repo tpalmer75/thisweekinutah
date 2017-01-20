@@ -34,11 +34,13 @@ angular.module('utahApp', ['ui.router','firebase'])
 	$scope.time = "";
 	$scope.originalLink = "";
 
-	$scope.uploadFile = function(event){
-        var file = event.target.files[0];
-        console.log(file);
-        firebaseFactory.uploadFile(file);
-    };
+	// $scope.uploadFile = function(event){
+	 //        var file = event.target.files[0];
+	 //        console.log(file);
+	 //        firebaseFactory.uploadFile(file);
+	 //    };
+
+
 
     $scope.filteredDate = $filter('date')($scope.startDate, "yyyy-mm-dd");
 
@@ -59,6 +61,8 @@ angular.module('utahApp', ['ui.router','firebase'])
 		firebaseFactory.pushData(customKey, eventDetails);
 	};
 
+	$scope.imageFile = {};
+
 	$scope.email;
 	$scope.password;
 	$scope.isLoggedIn = false;
@@ -74,15 +78,50 @@ angular.module('utahApp', ['ui.router','firebase'])
 	};
 })
 
-.directive('customFileUpload', function() {
-  return {
-    restrict: 'A',
-    link: function (scope, element, attrs) {
-      var onChangeHandler = scope.$eval(attrs.customFileUpload);
-      element.bind('change', onChangeHandler);
+// .directive('customFileUpload', function() {
+//   return {
+//     restrict: 'A',
+//     link: function (scope, element, attrs) {
+//       var onChangeHandler = scope.$eval(attrs.customFileUpload);
+//       element.bind('change', onChangeHandler);
+//     }
+//   };
+// })
+
+// .directive('fileInput', ['$parse', function ($parse) {
+//     return {
+//         restrict: 'A',
+//         link: function(scope, element, attrs) {
+//             var model = $parse(attrs.fileModel);
+//             var modelSetter = model.assign;
+            
+//             element.bind('change', function(){
+//                 scope.$apply(function(){
+//                     modelSetter(scope, element[0].files[0]);
+//                     console.log(element[0].files[0]);
+//                 });
+//             });
+//         }
+//     };
+// }])
+
+.directive("fileread", [function () {
+    return {
+        scope: {
+            fileread: "="
+        },
+        link: function (scope, element, attributes) {
+            element.bind("change", function (changeEvent) {
+                scope.$apply(function () {
+                    scope.imageFile = changeEvent.target.files[0];
+                    console.log(changeEvent.target.files[0]);
+                    // or all selected files:
+                    // scope.fileread = changeEvent.target.files;
+                });
+            });
+        }
     }
-  };
-})
+}])
 
 .controller('mainCtrl', function($scope, firebaseFactory, $filter, $rootScope) {
 

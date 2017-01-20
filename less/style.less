@@ -1,12 +1,81 @@
 @import "reset.less";
+@font-stack: "Fira Sans", sans-serif;
+@dark: #4F5466;
+@red: #F2543C;
+@btn-heigh-std: 40px;
 
 body {
-	font-family: "Muli", sans-serif;
+	font-family: @font-stack;
+	color: @dark;
+}
+
+.screen-reader {
+	position: absolute;
+	top: -9999px;
+	left: -9999px;
+}
+
+h2 {
+	font-size: 24px;
+	color: @dark;
 }
 
 header {
-	background: black;
-	color: white;
+	background-image: linear-gradient(-180deg, #C5F3FF 0%, #A6E5FF 100%);
+	color: #dark;
+	padding: 30px 0 10px;
+	h2 {
+		font-size: 24px;
+	}
+	h3 {
+		font-style: italic;
+		margin: 5px 0 20px;
+	}
+}
+
+button, input[type="submit"] {
+	&.red {
+		background: @red;
+		color: white;
+		border: 0;
+		border-radius: 6px;
+		//outline: none;
+		box-shadow: none;
+		appearance: none;
+		padding: 0 30px;
+		font-family: @font-stack;
+		font-size: 16px;
+		height: @btn-heigh-std;
+	}
+}
+
+input[type="text"], input[type="email"] {
+	height: @btn-heigh-std;
+	appearance: none;
+	border: 0;
+	width: 250px;
+	text-indent: 15px;
+	font-family: @font-stack;
+	font-size: 16px;
+	border-radius: 6px;
+	color: @dark;
+	//outline: none;
+}
+
+#newsletter {
+	border-left: 1px solid rgba(255,255,255,.75);
+	display: inline-block;
+	vertical-align: top;
+	padding: 20px 0 20px 50px;
+	padding-left: 50px;
+	margin-left: 30px;
+	input[type="email"] {
+		margin-right: 10px;
+	}
+}
+
+#logo {
+	width: 307px;
 }
 
 .wrapper {
@@ -15,10 +84,17 @@ header {
 }
 
 .week-range {
-	text-transform: uppercase;
-	font-weight: 900;
+	//text-transform: uppercase;
+	font-weight: bold;
 	letter-spacing: 1px;
 	margin: 40px 0;
+	span {
+		font-weight: normal;
+		font-size: 16px;
+		letter-spacing: 0;
+		color: lighten(@dark, 20%);
+		margin-left: 20px;
+	}
 }
 
 .event-list {
@@ -41,8 +117,8 @@ header {
 		}
 	}
 	.image-container {
-		width: 70px;
-		height: 70px;
+		width: 200px;
+		height: 120px;
 		display: flex;
 		align-items: center;
 		background: #ccc;
@@ -52,5 +128,20 @@ header {
 		img {
 			max-height: 100%;
 		}
+	}
+}
+
+#upload {
+	label {
+		display: block;
+		font-weight: bold;
+		margin-bottom: 8px;
+		//margin-top: 20px;
+	}
+	.login {
+		background: #ddd;
+	}
+	div {
+		padding: 20px;
 	}
 }

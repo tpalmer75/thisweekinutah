@@ -1,41 +1,45 @@
 h1 {{ test }}
-form
-	div
-		label 
-			h3 Email
-		input(type="email" placeholder="Email" ng-model="email")
+section#upload
+	form
+		div.login
+			label 
+				h3 Email
+			input(type="email" placeholder="Email" ng-model="email")
+			div
+				label 
+					h3 Password
+				input(type="password" placeholder="Password" ng-model="password")
+			div
+				button(ng-click="login()") Login
+	form(ng-if="isLoggedIn")
 		div
 			label 
-				h3 Password
-			input(type="password" placeholder="Password" ng-model="password")
+				h3 Title (Ex: Lights at Temple Square)
+			input(type="text" placeholder="Title" ng-model="title")
 		div
-			button(ng-click="login()") Login
-form(ng-if="isLoggedIn")
-	div
-		label 
-			h3 Title (Ex: Lights at Temple Square)
-		input(type="text" placeholder="Title" ng-model="title")
-	div
-		label 
-			h3 Description (What's going on?)
-		textarea(placeholder="Description")
-	div
-		label Image
-		input(type="file" custom-file-upload="uploadFile")
-	div
-		label 
-			h3 Location (ex: Salt Lake City)
-		input(type="text" placeholder="Location" ng-model="location")
-	div
-		label Start Date (2017-01-03T12:28:54)
-		input(type="text" ng-model="startDate")
-	div
-		label End Date (2017-01-03T12:28:54)
-		input(type="text" ng-model="endDate")
-	div
-		label Original Link
-		input(type="text" ng-model="originalLink")
-	div
-		button(ng-click="pushData()") Upload
+			label 
+				h3 Description (What's going on?)
+			textarea(placeholder="Description")
+		div
+			label Image
+			//- input(type="file" custom-file-upload="uploadFile")
+			//- input(type="file" ng-change="angular.element(this).scope().uploadFile(this)")
+			input(type="file" file-read="$parent.imageFile")
+			p {{ imageFile }}
+		div
+			label 
+				h3 Location (ex: Salt Lake City)
+			input(type="text" placeholder="Location" ng-model="location")
+		div
+			label Start Date (2017-01-03T12:28:54)
+			input(type="text" ng-model="startDate")
+		div
+			label End Date (2017-01-03T12:28:54)
+			input(type="text" ng-model="endDate")
+		div
+			label Original Link
+			input(type="text" ng-model="originalLink")
+		div
+			button(ng-click="pushData()") Upload
 
-p {{filteredDate}}
+	p {{filteredDate}}
