@@ -39,6 +39,66 @@
 		"oO": 0,
 		"oS": 1
 		},
+	"\/img\/calendar.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 1,
+		"oAP": "\/img\/calendar.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/img\/chevron-left.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 1,
+		"oAP": "\/img\/chevron-left.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/img\/clock.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 1,
+		"oAP": "\/img\/clock.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/img\/credit-card.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 1,
+		"oAP": "\/img\/credit-card.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/img\/email.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/img\/email.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/img\/facebook-box.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 1,
+		"oAP": "\/img\/facebook-box.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
 	"\/img\/logo-2x.png": {
 		"ft": 32768,
 		"iS": 137391,
@@ -52,6 +112,26 @@
 		"miP": 0,
 		"oA": 2,
 		"oAP": "\/img\/logo.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/img\/map-marker.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 1,
+		"oAP": "\/img\/map-marker.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/img\/twitter.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/img\/twitter.svg",
 		"oF": 0,
 		"opt": 0,
 		"plM": 3758088159,
@@ -88,14 +168,6 @@
 		"oF": 0,
 		"sC": 1,
 		"tS": 0
-		},
-	"\/js\/testData.json": {
-		"ft": 524288,
-		"oA": 1,
-		"oAP": "\/js\/testData-min.json",
-		"oF": 0,
-		"oO": 0,
-		"oS": 1
 		},
 	"\/less\/reset.less": {
 		"aP": 0,
@@ -142,6 +214,14 @@
 		"oA": 2,
 		"oAP": "\/templates\/event-detail.html",
 		"oF": 0
+		},
+	"\/templates\/event-detail.jade": {
+		"cOD": 1,
+		"ft": 512,
+		"oA": 0,
+		"oAP": "\/templates\/event-detail.html",
+		"oF": 0,
+		"oS": 0
 		},
 	"\/templates\/main.html": {
 		"ft": 8192,

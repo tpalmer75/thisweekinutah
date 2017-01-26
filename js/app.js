@@ -3,6 +3,8 @@ angular.module('utahApp', ['ui.router','firebase'])
 
 .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
+
+
 	$urlRouterProvider.otherwise('/');
 	//$locationProvider.html5Mode(true);
 	$stateProvider
@@ -21,6 +23,13 @@ angular.module('utahApp', ['ui.router','firebase'])
 	    	templateUrl: 'templates/upload.html',
 	    	controller: 'uploadCtrl'
 	    });
+})
+
+// scroll to the top of views
+.run(function($rootScope) {
+	$rootScope.$on('$stateChangeSuccess',function(){
+	    window.scrollTo(0, 0);
+	});
 })
 
 .controller('uploadCtrl', function($scope, firebaseFactory, $filter) {
@@ -78,33 +87,6 @@ angular.module('utahApp', ['ui.router','firebase'])
 	};
 })
 
-// .directive('customFileUpload', function() {
-//   return {
-//     restrict: 'A',
-//     link: function (scope, element, attrs) {
-//       var onChangeHandler = scope.$eval(attrs.customFileUpload);
-//       element.bind('change', onChangeHandler);
-//     }
-//   };
-// })
-
-// .directive('fileInput', ['$parse', function ($parse) {
-//     return {
-//         restrict: 'A',
-//         link: function(scope, element, attrs) {
-//             var model = $parse(attrs.fileModel);
-//             var modelSetter = model.assign;
-            
-//             element.bind('change', function(){
-//                 scope.$apply(function(){
-//                     modelSetter(scope, element[0].files[0]);
-//                     console.log(element[0].files[0]);
-//                 });
-//             });
-//         }
-//     };
-// }])
-
 .directive("fileread", [function () {
     return {
         scope: {
@@ -150,8 +132,27 @@ angular.module('utahApp', ['ui.router','firebase'])
 		});
 })
 
-.controller('eventCtrl', function($scope) {
-	$scope.test="Hello event ctrl!";
+.controller('eventCtrl', function($scope, firebaseFactory, $stateParams, $rootScope) {
+	$scope.eventInfo = {};
+
+	var firebaseData = firebaseFactory.singleEvent($stateParams.eventId);
+	$scope.event = {};
+	$scope.dataReady = false;
+
+	$rootScope.title = "This Week in Utah";
+
+	firebaseData.$loaded()
+		.then(function() {
+			$scope.dataReady = true;
+			console.log(firebaseData);
+			$scope.event = firebaseData;
+
+			// set meta tags
+			$rootScope.title = $scope.event.title + "—This Week in Utah";
+		})
+		.catch(function(err) {
+			console.log(err);
+		});
 })
 
 .filter('filterWeek', function() {
@@ -177,7 +178,7 @@ angular.module('utahApp', ['ui.router','firebase'])
 	};
 })
 
-.factory('firebaseFactory', function($firebaseArray) {
+.factory('firebaseFactory', function($firebaseArray, $firebaseObject) {
 
 	var startDate = new Date();
 	startDate.setDate(startDate.getDate()-7);
@@ -210,7 +211,11 @@ angular.module('utahApp', ['ui.router','firebase'])
 			}).catch(function(err){
 				console.log(err);
 			});
-	}
+	};
+
+	var singleEvent = function(key) {
+		return $firebaseObject(dataRef.child("events/"+key));
+	};
 
 	return {
 		data: function() {
@@ -221,6 +226,9 @@ angular.module('utahApp', ['ui.router','firebase'])
 		},
 		uploadFile: function(file) {
 			return uploadFile(file);
+		},
+		singleEvent: function(key) {
+			return singleEvent(key);
 		}
 	};
 

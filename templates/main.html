@@ -1,52 +1,60 @@
-
-<header>
-  <div class="wrapper">
-    <h1 class="screen-reader">This week in Utah</h1><a href="/" title="This Week in Utah"><img id="logo" src="img/logo-2x.png"/></a>
-    <div id="newsletter">
-      <h2>New things to do every week. 🎉</h2>
-      <h3>One email, once per week.</h3>
-      <div id="mc_embed_signup">
-        <form id="mc-embedded-subscribe-form" action="//uxtools.us14.list-manage.com/subscribe/post?u=56c88bcfa8f1dc80f5c401b3a&amp;id=218467b99e" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate="" class="validate"></form>
-        <div id="mc_embed_signup_scroll">
-          <input id="mce-EMAIL" type="email" value="" name="EMAIL" placeholder="Email address" required="" class="email"/>
-          <div style="position: absolute; left: -5000px;" aria-hidden="true">
-            <input type="text" name="b_56c88bcfa8f1dc80f5c401b3a_218467b99e" tabindex="-1" value=""/>
-          </div>
-          <input id="mc-embedded-subscribe" type="submit" value="Subscribe" name="subscribe" class="red"/>
-        </div>
-      </div>
-    </div>
-  </div>
-</header><a ui-sref="upload">Click here to go to /upload</a>
+<a ui-sref="upload">Click here to go to /upload</a>
 <section>
   <div class="wrapper">
-    <h2 class="week-range">💯 This week<span>{{ startFirstWeek.toISOString() | date : 'MMM dd' }}—{{ endFirstWeek.toISOString() | date : 'MMM dd' }} </span></h2>
+    <h2 class="week-range">👉 This week<span>{{ startFirstWeek.toISOString() | date : 'MMM dd' }}—{{ endFirstWeek.toISOString() | date : 'MMM dd' }} </span></h2>
     <ul class="event-list">
       <li style="order: 1">Subscribe now</li>
-      <li ng-repeat="event in eventData | filterWeek : startFirstWeek : endFirstWeek" style="order: {{$index}}">
-        <div class="image-container"><img ng-src="{{ event.image }}"/></div>
-        <div class="event-content">
-          <h3>{{event.title}}</h3><span ng-show="event.days">{{ event.days }}</span><span>{{event.startDate | date}}—{{event.endDate | date}}</span><span>{{event.startDate | date : 'h:mm'}}</span>
-        </div>
-      </li>
+      <li ng-repeat="event in eventData | filterWeek : startFirstWeek : endFirstWeek" style="order: {{$index}}"><a ui-sref="event-detail({eventId: event.$id})">
+          <div class="image-container"><img ng-src="{{ event.image }}"/></div>
+          <div class="event-content">
+            <h3>{{event.title}}</h3>
+            <ul>
+              <li><?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z" /></svg><span ng-show="event.days">{{ event.days }}</span><span ng-hide="event.days">{{event.startDate | date}}—{{event.endDate | date}}</span>
+              </li>
+              <li><?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z" /></svg><span>{{event.startDate | date : 'h:mma'}}</span>
+              </li>
+              <li><?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" /></svg><span>{{event.location}}</span>
+              </li>
+              <li><?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" /></svg><span ng-hide="event.price">Free</span><span ng-show="event.price">{{event.price}}</span>
+              </li>
+            </ul>
+          </div></a></li>
     </ul>
     <h2 class="week-range">{{ startNextWeek.toISOString() | date : 'MMM dd' }}—{{ endNextWeek.toISOString() | date : 'MMM dd' }}</h2>
     <ul class="event-list">
-      <li ng-repeat="event in eventData | filterWeek : startNextWeek : endNextWeek" style="order: {{$index}}">
-        <div class="image-container"><img ng-src="{{ event.image }}"/></div>
-        <div class="event-content">
-          <h3>{{event.title}}</h3><span ng-show="event.days">{{ event.days }}</span><span>{{event.startDate | date}}—{{event.endDate | date}}</span><span>{{event.startDate | date : 'h:mm'}}</span>
-        </div>
-      </li>
+      <li ng-repeat="event in eventData | filterWeek : startFirstWeek : endFirstWeek" style="order: {{$index}}"><a ui-sref="event-detail({eventId: event.$id})">
+          <div class="image-container"><img ng-src="{{ event.image }}"/></div>
+          <div class="event-content">
+            <h3>{{event.title}}</h3>
+            <ul>
+              <li><?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z" /></svg><span ng-show="event.days">{{ event.days }}</span><span ng-hide="event.days">{{event.startDate | date}}—{{event.endDate | date}}</span>
+              </li>
+              <li><?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z" /></svg><span>{{event.startDate | date : 'h:mma'}}</span>
+              </li>
+              <li><?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" /></svg><span>{{event.location}}</span>
+              </li>
+              <li><?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" /></svg><span ng-hide="event.price">Free</span><span ng-show="event.price">{{event.price}}</span>
+              </li>
+            </ul>
+          </div></a></li>
     </ul>
     <h2 class="week-range">{{ startThirdWeek.toISOString() | date : 'MMM dd' }}—{{ endThirdWeek.toISOString() | date : 'MMM dd' }}</h2>
     <ul class="event-list">
-      <li ng-repeat="event in eventData | filterWeek : startThirdWeek : endThirdWeek" style="order: {{$index}}">
-        <div class="image-container"><img ng-src="{{ event.image }}"/></div>
-        <div class="event-content">
-          <h3>{{event.title}}</h3><span ng-show="event.days">{{ event.days }}</span><span>{{event.startDate | date}}—{{event.endDate | date}}</span><span>{{event.startDate | date : 'h:mm'}}</span>
-        </div>
-      </li>
+      <li ng-repeat="event in eventData | filterWeek : startFirstWeek : endFirstWeek" style="order: {{$index}}"><a ui-sref="event-detail({eventId: event.$id})">
+          <div class="image-container"><img ng-src="{{ event.image }}"/></div>
+          <div class="event-content">
+            <h3>{{event.title}}</h3>
+            <ul>
+              <li><?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z" /></svg><span ng-show="event.days">{{ event.days }}</span><span ng-hide="event.days">{{event.startDate | date}}—{{event.endDate | date}}</span>
+              </li>
+              <li><?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z" /></svg><span>{{event.startDate | date : 'h:mma'}}</span>
+              </li>
+              <li><?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" /></svg><span>{{event.location}}</span>
+              </li>
+              <li><?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" /></svg><span ng-hide="event.price">Free</span><span ng-show="event.price">{{event.price}}</span>
+              </li>
+            </ul>
+          </div></a></li>
     </ul>
   </div>
 </section>

@@ -1,0 +1,31 @@
+.wrapper.event-detail
+	a.back(ui-sref="home")
+		include ../img/chevron-left.svg
+		| View All Events
+	.image-container
+		img(ng-src="{{ event.image }}")
+	h2 {{event.title}}
+	.flex-table
+		.flex-row
+			.col-1 Date:
+			.col-2 
+				span {{event.startDate | date }}
+				span(ng-show="event.startDate != event.endDate")  – {{event.endDate | date}}
+		.flex-row
+			.col-1 Location:
+			.col-2 {{event.location}}
+		.flex-row
+			.col-1 Price:
+			.col-2
+				span(ng-hide="event.price") Free
+				span(ng-show="event.price") {{event.price}}
+		.flex-row
+			.col-1 Time:
+			.col-2 {{event.time}}
+		.flex-row
+			.col-1 Info:
+			.col-2 
+				p {{event.description}}
+		.flex-row
+			.col-1 Link:
+			.col-2 {{event.link}}
